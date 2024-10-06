@@ -1,0 +1,28 @@
+cluster:
+  allowSchedulingOnControlPlanes: true
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
+  extraManifests:
+    - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+    - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+machine:
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: true
+    nodeIP:
+      validSubnets:
+        - ${subnet}
+  certSANs:
+      - ${publicip}
+  # Setup hetzner ntp server.
+  time:
+      servers:
+          - ntp1.hetzner.de
+          - ntp2.hetzner.com
+          - ntp3.hetzner.net
+          - 0.de.pool.ntp.org
+          - 1.de.pool.ntp.org
+          - time.cloudflare.com
