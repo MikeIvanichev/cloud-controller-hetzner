@@ -1,4 +1,4 @@
-talos_version   = "v1.7.6"
+talos_version   = "v1.8.1"
 arch            = "arm64"
 server_type     = "cax11"
 server_location = "hel1"
